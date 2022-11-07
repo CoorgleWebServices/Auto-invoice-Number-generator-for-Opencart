@@ -1,0 +1,17 @@
+<modification>
+	<id>Auto Invoice generator - Sintheetaa Technologies</id>
+	<version>1.0</version>
+	
+	<file name="catalog/controller/checkout/success.php">
+		<operation>
+			<search position="after"><![CDATA[
+if (isset($this->session->data['order_id'])) {
+]]></search>
+			<add><![CDATA[
+                        $this->load->model('sale/order');
+			$invoice_no = $this->model_sale_order->createInvoiceNo($this->session->data['order_id']);
+			]]></add>
+		</operation>
+	</file>
+	
+</modification>
